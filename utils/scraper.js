@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 
 const scrapeSQB = async () => {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']})
     const page = await browser.newPage()
     await page.goto('https://sqb.uz/uz/')
 
@@ -20,7 +20,7 @@ const scrapeSQB = async () => {
 }
 
 const scrapeTenge = async () => {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']})
     const page = await browser.newPage()
     await page.goto('https://tengebank.uz/uz')
     
