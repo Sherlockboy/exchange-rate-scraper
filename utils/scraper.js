@@ -1,7 +1,10 @@
 const puppeteer = require('puppeteer')
 
 const scrapeSQB = async () => {
-    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']})
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    })
     const page = await browser.newPage()
     await page.goto('https://sqb.uz/uz/')
 
@@ -14,16 +17,19 @@ const scrapeSQB = async () => {
             sell: row.cells[3].innerText
         }))
     )
-    
+
     await browser.close()
     return scrapedData
 }
 
 const scrapeTenge = async () => {
-    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']})
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    })
     const page = await browser.newPage()
     await page.goto('https://tengebank.uz/uz')
-    
+
     const scrapedData = await page.evaluate(() =>
         Array.from(document.querySelectorAll('#_js_currency_widget .currency__columns .currency__column'))
         .map(column => ({
