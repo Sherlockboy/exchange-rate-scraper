@@ -4,6 +4,7 @@ const scrapeSQB = async () => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     await page.goto('https://sqb.uz/uz/')
+
     const scrapedData = await page.evaluate(() =>
         Array.from(document.querySelectorAll('#pills-tabContent tbody tr'))
         .map(row => ({
@@ -13,6 +14,7 @@ const scrapeSQB = async () => {
             sell: row.cells[3].innerText
         }))
     )
+    
     await browser.close()
     return scrapedData
 }

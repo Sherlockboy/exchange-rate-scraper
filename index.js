@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
             .then(data => {
                 resolve(data)
             })
-            .catch(err => reject('SQB Exchange Rate scrape failed'))
+            .catch(err => reject(`SQB Exchange Rate scrape failed. ${err}`))
     })
 
     const tengeCurrencyRates = new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
             .then(data => {
                 resolve(data)
             })
-            .catch(err => reject('Tenge Exchange Rate scrape failed'))
+            .catch(err => reject(`Tenge Exchange Rate scrape failed. ${err}`))
     })
 
     Promise.all([sqbCurrencyRates, tengeCurrencyRates])
